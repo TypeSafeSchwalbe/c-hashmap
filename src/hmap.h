@@ -32,10 +32,8 @@ typedef struct HashMap {
 
 HashMap* hmap_new(size_t key_size, size_t val_size, size_t buckets);
 
-// expects `key` and `value` to be pointers (K* and V*) to the data!
 void hmap_set(HashMap* map, void* key, void* value);
 
-// expects `key` to be a pointer (K*) and returns a pointer (V*) to the data!
 void* hmap_get(HashMap* map, void* key);
 
 size_t hmap_hash(size_t length, char* data);

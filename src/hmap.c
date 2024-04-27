@@ -95,5 +95,15 @@ size_t hmap_hash(size_t length, char* data) {
 }
 
 void hmap_free(HashMap* self) {
-    // TODO
+    for(size_t bucketI = 0; bucketI < self->bucketc; bucketI += 1) {
+        HashMapBucket* bucket = self->bucketv + bucketI;
+        for(size_t entryI = 0; entryI < bucket->length; entryI += 1) {
+            HashMapEntry* entry = bucket->entries + entryI;
+            free(entry->key);
+            free(entry->value);
+        }
+        free(bucket->entries);
+    }
+    free(self->bucketv);
+    free(self);
 }
